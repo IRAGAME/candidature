@@ -19,13 +19,9 @@
     });
   }
 
-  var headerPromise = fetch("assets/js/partials/header.html").then(function (r) {
-    return r.text();
-  });
   var footerPromise = fetch("assets/js/partials/footer.html").then(function (r) {
     return r.text();
   });
 
-  inject("sg-header-placeholder", headerPromise);
   inject("sg-footer-placeholder", footerPromise);
 })();
