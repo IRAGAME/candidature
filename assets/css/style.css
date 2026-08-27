@@ -96,11 +96,9 @@ h1, h2, h3, h4, h5 { margin: 0; letter-spacing: -0.02em; font-weight: 700; line-
 .btn-primary {
   background: var(--grad-primary);
   color: #fff;
-  box-shadow: var(--shadow-primary);
 }
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(20, 184, 166, .38);
+  filter: brightness(1.05);
 }
 
 .btn-secondary {
