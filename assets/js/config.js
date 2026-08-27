@@ -9,6 +9,6 @@
  */
 const APP_CONFIG = {
   APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycby4Isc6R7SPUkEdfj105hyYMVDA4tBMShvP15gITRZHvwEaG4Q_P10kmjmWyj5fXqaL/exec",
-  SITE_NAME: "Stitch Global",
+  SITE_NAME: "IraGame",
   TAGLINE: "Candidatures simplifiées"
 };
