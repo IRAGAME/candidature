@@ -164,7 +164,6 @@ h1, h2, .brand { font-family: var(--font-display); }
 .field textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(45, 212, 191, .18);
 }
 .field .error-msg { font-size: 12.5px; color: var(--error); display: none; margin-top: 2px; }
 .field.invalid input,
@@ -206,7 +205,6 @@ h1, h2, .brand { font-family: var(--font-display); }
   border-color: var(--primary);
   color: #fff;
   background: var(--primary);
-  box-shadow: 0 6px 16px rgba(45, 212, 191, .28);
 }
 .step.done { color: var(--accent); }
 .step.done .dot {
@@ -227,7 +225,7 @@ h1, h2, .brand { font-family: var(--font-display); }
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: var(--grad-primary);
+  background: var(--primary-accent);
   border-radius: var(--radius-pill);
   transition: width .45s cubic-bezier(.4, 0, .2, 1);
 }
