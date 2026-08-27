@@ -232,7 +232,7 @@ a { color: var(--primary); }
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #5546e8, #16b8c6, #ff755b);
+  background: #e34b25;
   transition: width 0.4s ease;
 }
 
