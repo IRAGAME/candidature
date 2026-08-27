@@ -324,7 +324,34 @@
         opt.textContent = u.name;
         sel.appendChild(opt);
       });
-    }).catch(function () { sel.innerHTML = '<option value="">Impossible de charger les organisations</option>'; });
+    }).catch(function () {
+      var countryOption = document.querySelector('#country option:checked');
+      var countryCode = countryOption && countryOption.getAttribute('data-country-code');
+      if (!countryCode) throw new Error('Code pays indisponible');
+      return fetch('https://api.openalex.org/institutions?filter=country_code:' + encodeURIComponent(countryCode) + '&per-page=100')
+        .then(function (r) {
+          if (!r.ok) throw new Error('Organisations indisponibles');
+          return r.json();
+        })
+        .then(function (data) {
+          var institutions = data && Array.isArray(data.results) ? data.results : [];
+          if (institutions.length === 0) {
+            sel.innerHTML = '<option value="">Aucune organisation trouvée</option>';
+            return;
+          }
+          sel.innerHTML = '<option value="">Sélectionnez une organisation</option>';
+          institutions.forEach(function (u) {
+            if (!u || !u.display_name) return;
+            var opt = document.createElement('option');
+            opt.value = u.display_name;
+            opt.textContent = u.display_name;
+            sel.appendChild(opt);
+          });
+        })
+        .catch(function () {
+          sel.innerHTML = '<option value="">Impossible de charger les organisations</option>';
+        });
+    });
   }
 
   function bindChips() {
