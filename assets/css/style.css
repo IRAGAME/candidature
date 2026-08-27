@@ -350,3 +350,69 @@ h1, h2, h3, h4, h5 { margin: 0; letter-spacing: -0.02em; font-weight: 700; line-
   .summary-label { flex-basis: 130px; }
   .card { padding: 20px; }
 }
+
+/* ============================================================
+   Site one-page - Motion design
+   ============================================================ */
+.page-section {
+  position: relative;
+  padding: 96px 0;
+}
+.page-section.tight { padding: 72px 0; }
+
+/* Sections à thème (le body change de fond via GSAP) */
+body.theme-hero { --bg: #eef3ff; }
+body.theme-steps { --bg: #ffffff; }
+body.theme-stats { --bg: #111827; color: #e5e7eb; }
+body.theme-form  { --bg: #f0f4ff; }
+body,
+body .page-section {
+  transition: background-color .9s ease;
+}
+body.theme-stats,
+body.theme-stats p { color: #d1d5db; }
+
+/* Stack des étapes */
+.step-stack { display: grid; grid-template-columns: 1fr; gap: 28px; }
+
+/* Animations initiales (GSAP les anime) — actives seulement si GSAP est chargé */
+html.js .reveal { opacity: 0; transform: translateY(40px); will-change: opacity, transform; }
+html.js .reveal-left { opacity: 0; transform: translateX(-40px); will-change: opacity, transform; }
+html.js .reveal-right { opacity: 0; transform: translateX(40px); will-change: opacity, transform; }
+html.js .reveal-scale { opacity: 0; transform: scale(.92); will-change: opacity, transform; }
+
+/* Grand titre hero */
+.hero-kicker { font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--primary); }
+
+/* Numéros géants décoratifs */
+.giant-num {
+  font-size: clamp(90px, 18vw, 200px);
+  font-weight: 800;
+  line-height: .8;
+  color: rgba(36, 86, 214, .10);
+  -webkit-text-stroke: 1px rgba(36, 86, 214, .25);
+  position: absolute;
+  top: 8px; right: 20px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Flèche de scroll */
+.scroll-hint {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  color: var(--text-muted); font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,10px); } }
+
+/* Section formulaire : carte ancrée */
+.form-section-inner { max-width: 760px; margin: 0 auto; }
+
+/* Reveal utilitaires lorsque data-sal non exploité */
+html:not(.js) .reveal, html:not(.js) .reveal-left, html:not(.js) .reveal-right, html:not(.js) .reveal-scale { opacity: 1; transform: none; }
+
+@media (min-width: 900px) {
+  .step-stack { grid-template-columns: 1fr 1fr 1fr; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+}
