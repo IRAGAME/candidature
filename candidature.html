@@ -321,17 +321,17 @@
       if (!r.ok) throw new Error('Organisations indisponibles');
       return r.json();
     }).then(function (data) {
-      var institutions = Array.isArray(data) ? data.filter(function (u) {
-        return u && typeof u.name === "string" && u.name.trim() !== "";
+      var institutions = data && Array.isArray(data.results) ? data.results.filter(function (u) {
+        return u && typeof u.display_name === "string" && u.display_name.trim() !== "";
       }) : [];
       if (institutions.length === 0) { sel.innerHTML = '<option value="">Aucune université trouvée</option>'; return; }
       sel.innerHTML = '<option value="">Sélectionnez une université</option>';
       institutions.sort(function (a, b) {
-        return a.name.localeCompare(b.name);
+        return a.display_name.localeCompare(b.display_name);
       }).forEach(function (u) {
         var opt = document.createElement('option');
-        opt.value = u.name;
-        opt.textContent = u.name;
+        opt.value = u.display_name;
+        opt.textContent = u.display_name;
         sel.appendChild(opt);
       });
     }).catch(function () {
