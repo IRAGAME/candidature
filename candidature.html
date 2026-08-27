@@ -14,9 +14,13 @@
 
 <main class="app-main sg-container-narrow" style="flex:1;">
 
-  <div style="text-align:center;margin-bottom:28px;">
-    <h1 style="font-size:clamp(26px,5vw,34px);font-weight:800;margin:0 0 6px;letter-spacing:-0.02em;">Déposez votre candidature</h1>
-    <p style="color:#5b647e;margin:0;font-size:14.5px;">Les champs marqués d'un <span style="color:#d2333a;">*</span> sont obligatoires.</p>
+  <div class="cand-banner" style="position:relative;height:150px;border-radius:20px;overflow:hidden;margin-bottom:28px;box-shadow:var(--shadow-md);">
+    <img src="assets/images/step-2.jpg" alt="Étudiant qui travaille" style="width:100%;height:100%;object-fit:cover;"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(36,86,214,.72), rgba(17,181,160,.55));"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+      <h1 style="font-size:clamp(26px,5vw,34px);font-weight:800;margin:0 0 6px;letter-spacing:-0.02em;color:#fff;">Déposez votre candidature</h1>
+      <p style="color:rgba(255,255,255,.92);margin:0;font-size:14.5px;">Les champs marqués d'un <span style="font-weight:800;">*</span> sont obligatoires.</p>
+    </div>
   </div>
 
   <!-- Stepper -->
