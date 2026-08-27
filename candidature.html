@@ -309,8 +309,16 @@
   function fetchUniversities(country) {
     var sel = document.getElementById('university');
     if (!sel) return;
+    var countryOption = document.querySelector('#country option:checked');
+    var countryCode = countryOption && countryOption.getAttribute('data-country-code');
+    if (!countryCode) {
+      sel.innerHTML = '<option value="">Code pays indisponible</option>';
+      return;
+    }
     sel.innerHTML = '<option value="">Chargement…</option>';
-    fetch('https://universities.hipolabs.com/search?country=' + encodeURIComponent(country)).then(function (r) {
+    var universitiesUrl = APP_CONFIG.APPS_SCRIPT_URL +
+      '?action=universities&country=' + encodeURIComponent(country);
+    fetch(universitiesUrl).then(function (r) {
       if (!r.ok) throw new Error('Organisations indisponibles');
       return r.json();
     }).then(function (data) {
@@ -319,7 +327,9 @@
       }) : [];
       if (institutions.length === 0) { sel.innerHTML = '<option value="">Aucune université trouvée</option>'; return; }
       sel.innerHTML = '<option value="">Sélectionnez une université</option>';
-      institutions.forEach(function (u) {
+      institutions.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      }).forEach(function (u) {
         var opt = document.createElement('option');
         opt.value = u.name;
         opt.textContent = u.name;

@@ -44,9 +44,33 @@ function doPost(e) {
 }
 
 // Accessible via GET pour vérifier que le script fonctionne.
-function doGet() {
+function doGet(e) {
+  if (e && e.parameter && e.parameter.action === "universities") {
+    const country = e.parameter.country || "";
+    if (!country) {
+      return jsonResponse({ result: "error", message: "Pays manquant." });
+    }
+
+    const response = UrlFetchApp.fetch(
+      "http://universities.hipolabs.com/search?country=" + encodeURIComponent(country),
+      { muteHttpExceptions: true }
+    );
+    if (response.getResponseCode() !== 200) {
+      return jsonResponse({ result: "error", message: "Universités indisponibles." });
+    }
+    return ContentService
+      .createTextOutput(response.getContentText())
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   return ContentService
     .createTextOutput(JSON.stringify({ result: "ok", message: "Stitch Global API active." }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function jsonResponse(data) {
+  return ContentService
+    .createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
