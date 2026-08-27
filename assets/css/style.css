@@ -51,9 +51,10 @@ body {
   margin: 0;
   font-family: var(--font);
   background:
-    radial-gradient(circle at 85% 5%, rgba(17, 181, 160, .10), transparent 30%),
-    radial-gradient(circle at 5% 20%, rgba(36, 86, 214, .12), transparent 35%),
-    url("../images/bg-texture.jpg") no-repeat center center / cover fixed,
+    linear-gradient(rgba(244, 246, 251, .88), rgba(244, 246, 251, .88)),
+    radial-gradient(circle at 85% 5%, rgba(17, 181, 160, .12), transparent 30%),
+    radial-gradient(circle at 5% 20%, rgba(36, 86, 214, .14), transparent 35%),
+    url("../images/bg-campus.jpg") no-repeat center center / cover fixed,
     var(--bg);
   background-color: var(--bg);
   color: var(--text);
