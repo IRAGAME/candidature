@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Candidature - Stitch Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;background:#f9f9ff;">
+
+<div id="sg-header-placeholder"></div>
+
+<main class="app-main sg-container-narrow" style="flex:1;">
+
+  <div style="text-align:center;margin-bottom:24px;">
+    <h1 style="font-size:28px;font-weight:700;margin:0 0 4px;">Déposez votre candidature</h1>
+    <p style="color:#434654;margin:0;font-size:14px;">Les champs marqués d'un * sont obligatoires.</p>
+  </div>
+
+  <!-- Stepper -->
+  <div class="stepper" style="margin-bottom:16px;" id="stepper"></div>
+  <div class="progress-track" style="margin-bottom:28px;">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- Alerte globale -->
+  <div class="form-alert" id="formAlert"></div>
+
+  <form id="appForm" novalidate>
+
+    <!-- ============ ÉTAPE 1 : INFORMATIONS ============ -->
+    <section class="step-panel card" data-step="1" style="display:block;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 20px;">1. Informations personnelles</h2>
+      <div class="sg-form-grid-2" style="display:grid;grid-template-columns:1fr;gap:16px;">
+        <div class="field">
+          <label for="prenom">Prénom *</label>
+          <input type="text" id="prenom" name="prenom" required/>
+          <span class="error-msg">Veuillez renseigner votre prénom.</span>
+        </div>
+        <div class="field">
+          <label for="nom">Nom *</label>
+          <input type="text" id="nom" name="nom" required/>
+          <span class="error-msg">Veuillez renseigner votre nom.</span>
+        </div>
+      </div>
+      <div class="sg-form-grid-2" style="display:grid;grid-template-columns:1fr;gap:16px;margin-top:16px;">
+        <div class="field">
+          <label for="email">Adresse e-mail *</label>
+          <input type="email" id="email" name="email" required/>
+          <span class="error-msg">Veuillez saisir un e-mail valide.</span>
+        </div>
+        <div class="field">
+          <label for="telephone">Téléphone *</label>
+          <input type="tel" id="telephone" name="telephone" required/>
+          <span class="error-msg">Veuillez saisir votre numéro de téléphone.</span>
+        </div>
+      </div>
+      <div class="field" style="margin-top:16px;">
+        <label for="position">Poste visé *</label>
+        <select id="position" name="position" required>
+          <option value="">Sélectionnez un poste</option>
+          <option>Développeur Web</option>
+          <option>Data Analyst</option>
+          <option>Chef de projet</option>
+          <option>Marketing Manager</option>
+          <option>Autre</option>
+        </select>
+        <span class="error-msg">Veuillez sélectionner un poste.</span>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:24px;">
+        <button type="button" class="btn btn-primary next-btn" data-next="2">Continuer</button>
+      </div>
+    </section>
+
+    <!-- ============ ÉTAPE 2 : POSTE & LOCALISATION ============ -->
+    <section class="step-panel card" data-step="2" style="display:none;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 20px;">2. Poste & Localisation</h2>
+
+      <div class="field">
+        <label for="country">Pays *</label>
+        <select id="country" name="country" required>
+          <option value="">Chargement des pays…</option>
+        </select>
+        <span class="error-msg">Veuillez sélectionner un pays.</span>
+      </div>
+
+      <div class="field" style="margin-top:12px;">
+        <label for="university">Organisation / Université *</label>
+        <select id="university" name="university" required>
+          <option value="">Sélectionnez un pays d'abord</option>
+        </select>
+        <span class="error-msg">Veuillez sélectionner une organisation.</span>
+      </div>
+
+      <div class="field" style="margin-top:12px;">
+        <label for="experience">Années d'expérience *</label>
+        <input type="number" id="experience" name="experience" min="0" max="50" required/>
+        <span class="error-msg">Veuillez indiquer votre expérience.</span>
+      </div>
+
+      <div style="margin-top:16px;">
+        <label style="font-size:14px;font-weight:500;">Compétences (sélectionnez plusieurs) *</label>
+        <div id="skillsChips" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+          <span class="chip" data-value="Gestion de projet">Gestion de projet</span>
+          <span class="chip" data-value="Analyse de données">Analyse de données</span>
+          <span class="chip" data-value="Marketing">Marketing</span>
+          <span class="chip" data-value="Développement web">Développement web</span>
+          <span class="chip" data-value="Gestion financière">Gestion financière</span>
+          <span class="chip" data-value="Communication">Communication</span>
+          <span class="chip" data-value="Anglais">Anglais</span>
+          <span class="chip" data-value="Excel avancé">Excel avancé</span>
+        </div>
+        <span class="error-msg" id="skillsError" style="display:none;font-size:12px;color:#ba1a1a;margin-top:6px;">Sélectionnez au moins une compétence.</span>
+      </div>
+
+      <div class="field" style="margin-top:24px;">
+        <label for="motivation">Lettre de motivation *</label>
+        <textarea id="motivation" name="motivation" required placeholder="Présentez brièvement pourquoi vous postulez pour ce poste..."></textarea>
+        <span class="error-msg">Veuillez rédiger une lettre de motivation.</span>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;margin-top:24px;">
+        <button type="button" class="btn btn-secondary prev-btn" data-prev="1">Retour</button>
+        <button type="button" class="btn btn-primary next-btn" data-next="3">Continuer</button>
+      </div>
+    </section>
+
+    <!-- ============ ÉTAPE 3 : CONFIRMATION ============ -->
+    <section class="step-panel card" data-step="3" style="display:none;">
+      <h2 style="font-size:20px;font-weight:700;margin:0 0 20px;">3. Confirmation</h2>
+      <p style="font-size:14px;color:#434654;margin:0 0 20px;">
+        Vérifiez vos informations avant de soumettre. Une fois validées, elles seront transmises
+        au service des admissions.
+      </p>
+
+      <div id="summary" style="font-size:14px;line-height:2;background:#f1f3ff;border:1px solid #c3c6d6;border-radius:8px;padding:16px 20px;"></div>
+
+      <label class="field" style="display:flex;flex-direction:row;align-items:flex-start;gap:10px;margin-top:20px;">
+        <input type="checkbox" id="consent" required style="height:18px;width:18px;margin-top:2px;"/>
+        <span style="font-size:13px;color:#434654;line-height:20px;">
+          J'atteste que les informations fournies sont exactes et j'accepte qu'elles soient
+          traitées dans le cadre de ma candidature. *
+        </span>
+      </label>
+      <span class="error-msg" id="consentError" style="display:none;font-size:12px;color:#ba1a1a;margin-top:6px;">Veuillez accepter le traitement de vos données.</span>
+
+      <div style="display:flex;justify-content:space-between;margin-top:24px;">
+        <button type="button" class="btn btn-secondary prev-btn" data-prev="2">Retour</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Soumettre ma candidature</button>
+      </div>
+    </section>
+
+  </form>
+</main>
+
+<div id="sg-footer-placeholder"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+(function () {
+  var form = document.getElementById("appForm");
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".step-panel"));
+  var stepper = document.getElementById("stepper");
+  var progressFill = document.getElementById("progressFill");
+  var stepTitles = ["Informations", "Poste & Localisation", "Confirmation"];
+  var currentStep = 1;
+  var formData = {};
+
+  buildStepper();
+  bindNav();
+  bindCountryAndUniversities();
+  bindChips();
+
+  function buildStepper() {
+    stepTitles.forEach(function (title, i) {
+      var step = i + 1;
+      if (i > 0) stepper.insertAdjacentHTML("beforeend", '<span class="step-line" data-line="' + step + '"></span>');
+      stepper.insertAdjacentHTML("beforeend",
+        '<div class="step" data-step-el="' + step + '">' +
+          '<span class="dot">' + step + '</span><span>' + title + '</span></div>'
+      );
+    });
+    updateStepper();
+  }
+
+  function updateStepper() {
+    stepper.querySelectorAll("[data-step-el]").forEach(function (el) {
+      var s = parseInt(el.getAttribute("data-step-el"), 10);
+      el.classList.toggle("active", s === currentStep);
+      el.classList.toggle("done", s < currentStep);
+      el.querySelector(".dot").textContent = s < currentStep ? "\u2713" : s;
+    });
+    stepper.querySelectorAll("[data-line]").forEach(function (el) {
+      el.classList.toggle("done", parseInt(el.getAttribute("data-line"), 10) <= currentStep);
+    });
+    progressFill.style.width = (currentStep / stepTitles.length * 100) + "%";
+  }
+
+  function showStep(n) {
+    currentStep = n;
+    panels.forEach(function (p) {
+      p.style.display = parseInt(p.getAttribute("data-step"), 10) === n ? "block" : "none";
+    });
+    updateStepper();
+    formAlert(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (n === 3) renderSummary();
+  }
+
+  function bindNav() {
+    form.querySelectorAll(".next-btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (validateStep(currentStep)) {
+          showStep(parseInt(b.getAttribute("data-next"), 10));
+        }
+      });
+    });
+    form.querySelectorAll(".prev-btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        showStep(parseInt(b.getAttribute("data-prev"), 10));
+      });
+    });
+  }
+
+  function validateStep(step) {
+    var ok = true;
+    var panel = form.querySelector('.step-panel[data-step="' + step + '"]');
+    var required = panel.querySelectorAll("input[required], select[required], textarea[required]");
+    required.forEach(function (el) {
+      var valid = el.value.trim() !== "";
+      if (el.type === "email") valid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value.trim());
+      setFieldError(el, !valid);
+      if (!valid) ok = false;
+    });
+
+    if (step === 2) {
+      var countryEl = document.getElementById('country');
+      var uniEl = document.getElementById('university');
+      var skills = getSelectedSkills();
+      var skillsErr = document.getElementById('skillsError');
+      var countryValid = countryEl && countryEl.value.trim() !== '';
+      var uniValid = uniEl && uniEl.value.trim() !== '';
+      setFieldError(countryEl, !countryValid);
+      setFieldError(uniEl, !uniValid);
+      if (!countryValid || !uniValid) ok = false;
+      if (skills.length === 0) { skillsErr.style.display = 'block'; ok = false; }
+      else skillsErr.style.display = 'none';
+    }
+
+    if (!ok) formAlert(true, "Certains champs sont incomplets ou invalides. Veuillez les vérifier.");
+    return ok;
+  }
+
+  function setFieldError(el, invalid) {
+    var field = el.closest(".field");
+    if (!field) return;
+    field.classList.toggle("invalid", invalid);
+  }
+
+  function formAlert(show, msg) {
+    var alert = document.getElementById("formAlert");
+    if (show) {
+      alert.textContent = msg;
+      alert.classList.add("show");
+    } else {
+      alert.classList.remove("show");
+    }
+  }
+
+  function bindCountryAndUniversities() {
+    // Initialise la liste des pays et lie la sélection des universités
+    fetchCountries();
+    var countryEl = document.getElementById('country');
+    if (countryEl) {
+      countryEl.addEventListener('change', function () {
+        var c = countryEl.value;
+        if (c) fetchUniversities(c);
+        else document.getElementById('university').innerHTML = '<option value="">Sélectionnez un pays d\'abord</option>';
+      });
+    }
+  }
+
+  function fetchCountries() {
+    var sel = document.getElementById('country');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Chargement des pays…</option>';
+    fetch('https://date.nager.at/api/v3/AvailableCountries').then(function (r) {
+      if (!r.ok) throw new Error('Pays indisponibles');
+      return r.json();
+    }).then(function (data) {
+      sel.innerHTML = '<option value="">Sélectionnez un pays</option>';
+      data.filter(function (c) { return c && c.name && c.countryCode; }).sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      }).forEach(function (c) {
+        var opt = document.createElement('option');
+        opt.value = c.name;
+        opt.textContent = c.name;
+        opt.setAttribute('data-country-code', c.countryCode.toLowerCase());
+        sel.appendChild(opt);
+      });
+    }).catch(function () {
+      sel.innerHTML = '<option value="">Impossible de charger les pays</option>';
+    });
+  }
+
+  function fetchUniversities(country) {
+    var sel = document.getElementById('university');
+    if (!sel) return;
+    var countryOption = document.querySelector('#country option:checked');
+    var countryCode = countryOption && countryOption.getAttribute('data-country-code');
+    if (!countryCode) {
+      sel.innerHTML = '<option value="">Code pays indisponible</option>';
+      return;
+    }
+    sel.innerHTML = '<option value="">Chargement…</option>';
+    fetch('https://api.openalex.org/institutions?filter=country_code:' + encodeURIComponent(countryCode) + '&per-page=100').then(function (r) {
+      if (!r.ok) throw new Error('Organisations indisponibles');
+      return r.json();
+    }).then(function (data) {
+      var institutions = data && Array.isArray(data.results) ? data.results : [];
+      if (institutions.length === 0) { sel.innerHTML = '<option value="">Aucune organisation trouvée</option>'; return; }
+      sel.innerHTML = '<option value="">Sélectionnez une organisation</option>';
+      institutions.forEach(function (u) {
+        var opt = document.createElement('option');
+        opt.value = u.display_name;
+        opt.textContent = u.display_name;
+        sel.appendChild(opt);
+      });
+    }).catch(function () { sel.innerHTML = '<option value="">Impossible de charger les organisations</option>'; });
+  }
+
+  function bindChips() {
+    document.querySelectorAll("#skillsChips .chip").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        chip.classList.toggle("selected");
+        document.getElementById("skillsError").style.display = "none";
+      });
+    });
+  }
+
+  function getSelectedSkills() {
+    return Array.prototype.slice.call(document.querySelectorAll("#skillsChips .chip.selected"))
+      .map(function (c) { return c.getAttribute("data-value"); });
+  }
+
+  function collectData() {
+    var d = {};
+    ["prenom", "nom", "email", "telephone", "position", "motivation"].forEach(function (k) {
+      var el = document.getElementById(k);
+      if (el) d[k] = el.value.trim();
+    });
+
+    d.country = (document.getElementById('country') && document.getElementById('country').value.trim()) || '';
+    d.organization = (document.getElementById('university') && document.getElementById('university').value.trim()) || '';
+    d.experience = (document.getElementById('experience') && document.getElementById('experience').value.trim()) || '';
+    d.competences = getSelectedSkills();
+    d.dateSoumission = new Date().toISOString();
+    d.reference = "SG-" + Date.now().toString(36).toUpperCase();
+    return d;
+  }
+
+  function renderSummary() {
+    var d = collectData();
+    var rows = [
+      ["Nom complet", (d.prenom || "") + " " + (d.nom || "")],
+      ["E-mail", d.email],
+      ["Téléphone", d.telephone],
+      ["Poste", d.position || "—"],
+      ["Pays", d.country || "—"],
+      ["Organisation", d.organization || "—"],
+      ["Expérience (années)", d.experience || "—"],
+      ["Compétences", d.competences.length ? d.competences.join(", ") : "—"]
+    ];
+    rows.push(["Lettre de motivation", (d.motivation || "").substring(0, 300) + (d.motivation && d.motivation.length > 300 ? "…" : "")]);
+
+    document.getElementById("summary").innerHTML = rows.map(function (r) {
+      return '<div style="margin-bottom:6px;"><strong>' + r[0] + '</strong><br/><span style="color:#041b3c;">' + r[1] + '</span></div>';
+    }).join("");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!validateStep(3)) {
+      var consentEl = document.getElementById("consent");
+      if (!consentEl.checked) document.getElementById("consentError").style.display = "block";
+      return;
+    }
+    if (!document.getElementById("consent").checked) {
+      document.getElementById("consentError").style.display = "block";
+      formAlert(true, "Veuillez accepter le traitement de vos données.");
+      return;
+    }
+    submitData();
+  });
+
+  function submitData() {
+    var data = collectData();
+    var btn = document.getElementById("submitBtn");
+    var endpoint = window.APP_CONFIG && APP_CONFIG.APPS_SCRIPT_URL;
+
+    if (!endpoint || endpoint.indexOf("COPIEZ_ICI") !== -1) {
+      formAlert(true, "La candidature a été enregistrée en mode démonstration. Configurez l'URL du Google Apps Script dans assets/js/config.js.");
+      localStorage.setItem("sg_application", JSON.stringify(data));
+      redirectSuccess(data);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Envoi en cours...";
+
+    fetch(endpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    }).then(function () {
+      localStorage.setItem("sg_application", JSON.stringify(data));
+      redirectSuccess(data);
+    }).catch(function () {
+      localStorage.setItem("sg_application", JSON.stringify(data));
+      formAlert(true, "Votre candidature a été enregistrée localement. Réessayez ou contactez le support.");
+      redirectSuccess(data);
+    });
+  }
+
+  function redirectSuccess(data) {
+    window.location.href = "confirmation.html?ref=" + encodeURIComponent(data.reference || "");
+  }
+})();
+</script>
+
+<style>
+  @media (min-width: 640px) {
+    .sg-form-grid-2 { grid-template-columns: 1fr 1fr !important; }
+    .sg-form-grid-3 { grid-template-columns: 1fr 1fr 1fr !important; }
+  }
+</style>
+</body>
+</html>

@@ -1,0 +1,297 @@
+/* ============================================================
+   Stitch Global - Application Portal
+   Design system Stitch Global (ProForma Professional)
+   ============================================================ */
+
+:root {
+  --surface: #f9f9ff;
+  --surface-dim: #cadaff;
+  --surface-bright: #f9f9ff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f1f3ff;
+  --surface-container: #e8edff;
+  --surface-container-high: #e0e8ff;
+  --surface-container-highest: #d7e2ff;
+  --on-surface: #041b3c;
+  --on-surface-variant: #434654;
+  --inverse-surface: #1d3052;
+  --inverse-on-surface: #edf0ff;
+  --outline: #737685;
+  --outline-variant: #c3c6d6;
+  --surface-tint: #0c56d0;
+  --primary: #003d9b;
+  --on-primary: #ffffff;
+  --primary-container: #0052cc;
+  --on-primary-container: #c4d2ff;
+  --inverse-primary: #b2c5ff;
+  --secondary: #5c5f60;
+  --on-secondary: #ffffff;
+  --secondary-container: #dee0e2;
+  --on-secondary-container: #606365;
+  --tertiary: #004b59;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #006477;
+  --on-tertiary-container: #76e2ff;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --primary-fixed: #dae2ff;
+  --primary-fixed-dim: #b2c5ff;
+  --on-primary-fixed: #001848;
+  --on-primary-fixed-variant: #0040a2;
+  --secondary-fixed: #e1e2e4;
+  --secondary-fixed-dim: #c5c6c8;
+  --on-secondary-fixed: #191c1e;
+  --on-secondary-fixed-variant: #444749;
+  --tertiary-fixed: #afecff;
+  --tertiary-fixed-dim: #48d7f9;
+  --on-tertiary-fixed: #001f27;
+  --on-tertiary-fixed-variant: #004e5d;
+  --background: #f9f9ff;
+  --on-background: #041b3c;
+  --surface-variant: #d7e2ff;
+}
+
+/* --- Typography (Inter) --- */
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--background);
+  color: var(--on-background);
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* --- Réinitialisation légère --- */
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; display: block; }
+a { color: var(--primary); }
+
+/* --- Layout helpers (équivalent des classes Tailwind utiles) --- */
+.sg-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.sg-container-narrow {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --- Boutons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: 0 1px 2px rgba(4, 27, 60, 0.15);
+}
+.btn-primary:hover:not(:disabled) { background: var(--primary-container); }
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--outline-variant);
+}
+.btn-secondary:hover:not(:disabled) { background: var(--surface-container-low); }
+
+/* --- Cartes --- */
+.card {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* --- Champs de formulaire --- */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--on-surface);
+}
+.field input,
+.field select,
+.field textarea {
+  height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--on-surface);
+  background: var(--surface-container-lowest);
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.field textarea { height: auto; min-height: 90px; resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 61, 155, 0.12);
+}
+.field .error-msg { font-size: 12px; color: var(--error); display: none; }
+.field.invalid input,
+.field.invalid select,
+.field.invalid textarea { border-color: var(--error); }
+.field.invalid .error-msg { display: block; }
+
+/* --- Bandeau d'erreur global --- */
+.form-alert {
+  display: none;
+  background: var(--error-container);
+  color: var(--on-error-container);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.form-alert.show { display: block; }
+
+/* --- Indicateurs d'étapes (Stepper) --- */
+.stepper { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  font-weight: 600;
+}
+.step .dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 2px solid var(--outline-variant);
+  background: var(--surface-container-lowest);
+  color: var(--on-surface-variant);
+  font-size: 13px;
+}
+.step.active { color: var(--primary); font-weight: 700; }
+.step.active .dot { border-color: var(--primary); color: var(--primary); }
+.step.done .dot {
+  background: var(--tertiary);
+  border-color: var(--tertiary);
+  color: var(--on-tertiary);
+}
+.step-line {
+  width: 32px; height: 2px; background: var(--outline-variant);
+}
+.step-line.done { background: var(--tertiary); }
+
+/* --- Barre de progression --- */
+.progress-track {
+  height: 4px;
+  background: var(--outline-variant);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--tertiary));
+  transition: width 0.4s ease;
+}
+
+/* --- Header / Footer --- */
+.sg-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--surface-bright);
+  border-bottom: 1px solid var(--outline-variant);
+}
+.sg-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.brand { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; color: var(--primary); text-decoration: none; }
+
+.sg-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--outline-variant);
+  background: var(--surface-container-lowest);
+  padding: 24px 0;
+  text-align: center;
+}
+.sg-footer .foot-links { display: flex; gap: 24px; justify-content: center; margin: 12px 0; }
+.sg-footer a { font-size: 12px; color: var(--on-surface-variant); text-decoration: none; }
+.sg-footer a:hover { color: var(--primary); }
+
+/* --- Badge "candidature" --- */
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  border-radius: 9999px; padding: 6px 14px;
+  font-size: 12px; font-weight: 600;
+  color: var(--on-surface);
+}
+
+/* --- Section formulaire (1 colonne centrée) --- */
+.app-main {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+.hidden { display: none !important; }
+
+/* Glassmorphic overlay pour modales / succès */
+.glass {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--outline-variant);
+}
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface-container-low);
+  color: var(--on-surface-variant);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+.chip.selected { background: var(--primary); color: var(--on-primary); }
+
+/* Bouton d'ajout de section répétable */
+.field-group { border: 1px solid var(--outline-variant); border-radius: 8px; padding: 16px; margin-bottom: 16px; background: var(--surface-container-lowest); }
+.add-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-weight: 600; font-size: 14px; background: none; border: none; cursor: pointer; }
+.remove-btn { color: var(--error); font-weight: 600; font-size: 13px; background: none; border: none; cursor: pointer; }
+
+@media (min-width: 768px) {
+  .sg-container { padding: 0 40px; }
+  .sg-form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sg-form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+}
+@media (max-width: 767px) {
+  .sg-container { padding: 0 16px; }
+}

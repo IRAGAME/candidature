@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confirmation - Stitch Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;background:#f9f9ff;">
+
+<div id="sg-header-placeholder"></div>
+
+<main class="sg-container-narrow" style="flex:1;padding-top:72px;padding-bottom:72px;text-align:center;">
+  <div class="card" style="max-width:560px;margin:0 auto;">
+    <div style="width:64px;height:64px;border-radius:50%;background:#0052cc;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1 style="font-size:26px;font-weight:700;margin:0 0 8px;">Candidature envoyée !</h1>
+    <p style="color:#434654;font-size:15px;margin:0 0 24px;">
+      Merci, votre dossier a bien été transmis au service des admissions.
+      Vous recevrez une réponse sous 10 jours ouvrés.
+    </p>
+
+    <div style="background:#f1f3ff;border:1px solid #c3c6d6;border-radius:8px;padding:16px 20px;font-size:14px;margin-bottom:24px;">
+      <div style="color:#434654;margin-bottom:4px;">Numéro de référence</div>
+      <strong id="ref" style="font-size:18px;color:#003d9b;">—</strong>
+    </div>
+
+    <a class="btn btn-primary" href="index.html" style="width:100%;">Retour à l'accueil</a>
+  </div>
+</main>
+
+<div id="sg-footer-placeholder"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var ref = params.get("ref");
+    if (!ref) {
+      try {
+        var saved = JSON.parse(localStorage.getItem("sg_application") || "{}");
+        ref = saved.reference || "";
+      } catch (e) {}
+    }
+    var el = document.getElementById("ref");
+    if (ref) el.textContent = ref;
+    localStorage.removeItem("sg_application");
+  })();
+</script>
+</body>
+</html>
