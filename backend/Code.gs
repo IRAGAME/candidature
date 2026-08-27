@@ -34,7 +34,7 @@ function doPost(e) {
     writeRow(sheet, data);
 
     return ContentService
-      .createTextOutput(JSON.stringify({ result: "success", reference: data.reference || "" }))
+      .createTextOutput(JSON.stringify({ result: "success" }))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService

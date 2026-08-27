@@ -25,11 +25,6 @@
       Vous recevrez une réponse sous 10 jours ouvrés.
     </p>
 
-    <div style="background:#f1f3ff;border:1px solid #c3c6d6;border-radius:8px;padding:16px 20px;font-size:14px;margin-bottom:24px;">
-      <div style="color:#434654;margin-bottom:4px;">Numéro de référence</div>
-      <strong id="ref" style="font-size:18px;color:#003d9b;">—</strong>
-    </div>
-
     <a class="btn btn-primary" href="index.html" style="width:100%;">Retour à l'accueil</a>
   </div>
 </main>
@@ -38,20 +33,5 @@
 
 <script src="assets/js/config.js"></script>
 <script src="assets/js/components.js"></script>
-<script>
-  (function () {
-    var params = new URLSearchParams(window.location.search);
-    var ref = params.get("ref");
-    if (!ref) {
-      try {
-        var saved = JSON.parse(localStorage.getItem("sg_application") || "{}");
-        ref = saved.reference || "";
-      } catch (e) {}
-    }
-    var el = document.getElementById("ref");
-    if (ref) el.textContent = ref;
-    localStorage.removeItem("sg_application");
-  })();
-</script>
 </body>
 </html>

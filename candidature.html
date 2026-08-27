@@ -365,7 +365,6 @@
     d.experience = (document.getElementById('experience') && document.getElementById('experience').value.trim()) || '';
     d.competences = getSelectedSkills();
     d.dateSoumission = new Date().toISOString();
-    d.reference = "SG-" + Date.now().toString(36).toUpperCase();
     return d;
   }
 
@@ -410,8 +409,7 @@
 
     if (!endpoint || endpoint.indexOf("COPIEZ_ICI") !== -1) {
       formAlert(true, "La candidature a été enregistrée en mode démonstration. Configurez l'URL du Google Apps Script dans assets/js/config.js.");
-      localStorage.setItem("sg_application", JSON.stringify(data));
-      redirectSuccess(data);
+      redirectSuccess();
       return;
     }
 
@@ -424,17 +422,15 @@
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(data)
     }).then(function () {
-      localStorage.setItem("sg_application", JSON.stringify(data));
-      redirectSuccess(data);
+      redirectSuccess();
     }).catch(function () {
-      localStorage.setItem("sg_application", JSON.stringify(data));
       formAlert(true, "Votre candidature a été enregistrée localement. Réessayez ou contactez le support.");
-      redirectSuccess(data);
+      redirectSuccess();
     });
   }
 
-  function redirectSuccess(data) {
-    window.location.href = "confirmation.html?ref=" + encodeURIComponent(data.reference || "");
+  function redirectSuccess() {
+    window.location.href = "confirmation.html";
   }
 })();
 </script>
