@@ -4,31 +4,31 @@
    ============================================================ */
 
 :root {
-  /* Palette */
-  --bg: #f4f6fb;
-  --surface: #ffffff;
-  --surface-muted: #f7f8fc;
-  --surface-accent: #eef1fb;
-  --border: #e3e7f0;
-  --border-strong: #c9d0e0;
+  /* Palette (sombre) */
+  --bg: #0b0e17;
+  --surface: #151a26;
+  --surface-muted: #1b2130;
+  --surface-accent: #1e2640;
+  --border: #262e3f;
+  --border-strong: #37415a;
 
-  --text: #1a2233;
-  --text-muted: #5b647e;
-  --text-faint: #8a92a8;
+  --text: #eef1f6;
+  --text-muted: #a6aec2;
+  --text-faint: #7c85a0;
 
-  --primary: #2456d6;
-  --primary-strong: #1b46b8;
-  --primary-soft: #e8eeff;
-  --primary-accent: #2f6bff;
+  --primary: #6b8cff;
+  --primary-strong: #8aa4ff;
+  --primary-soft: #1c2640;
+  --primary-accent: #5880ff;
 
-  --accent: #11b5a0;
-  --accent-soft: #e1f7f3;
+  --accent: #35d4bd;
+  --accent-soft: #122a27;
 
-  --error: #d2333a;
-  --error-soft: #fdebed;
-  --success: #21a67a;
+  --error: #ff7a7f;
+  --error-soft: #3a1a1d;
+  --success: #3ddc9f;
 
-  --grad-primary: linear-gradient(135deg, #2f6bff 0%, #5b3df5 100%);
+  --grad-primary: linear-gradient(135deg, #5880ff 0%, #8b5cf6 100%);
 
   /* Rayons / ombres */
   --radius-sm: 10px;
@@ -36,10 +36,10 @@
   --radius-lg: 20px;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgba(26, 34, 51, .05), 0 1px 3px rgba(26, 34, 51, .06);
-  --shadow-md: 0 6px 18px rgba(26, 34, 51, .08);
-  --shadow-lg: 0 18px 44px rgba(26, 34, 51, .12);
-  --shadow-primary: 0 12px 26px rgba(36, 86, 214, .28);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 1px 3px rgba(0, 0, 0, .4);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, .4);
+  --shadow-lg: 0 18px 44px rgba(0, 0, 0, .5);
+  --shadow-primary: 0 12px 26px rgba(88, 128, 255, .3);
 
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -51,9 +51,9 @@ body {
   margin: 0;
   font-family: var(--font);
   background:
-    linear-gradient(rgba(244, 246, 251, .88), rgba(244, 246, 251, .88)),
-    radial-gradient(circle at 85% 5%, rgba(17, 181, 160, .12), transparent 30%),
-    radial-gradient(circle at 5% 20%, rgba(36, 86, 214, .14), transparent 35%),
+    linear-gradient(rgba(11, 14, 23, .68), rgba(11, 14, 23, .68)),
+    radial-gradient(circle at 85% 5%, rgba(53, 212, 189, .14), transparent 30%),
+    radial-gradient(circle at 5% 20%, rgba(107, 140, 255, .18), transparent 35%),
     url("../images/bg-campus.jpg") no-repeat center center / cover fixed,
     var(--bg);
   background-color: var(--bg);
@@ -237,7 +237,7 @@ h1, h2, h3, h4, h5 { margin: 0; letter-spacing: -0.02em; font-weight: 700; line-
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, .85);
+  background: rgba(13, 17, 27, .82);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -361,9 +361,9 @@ h1, h2, h3, h4, h5 { margin: 0; letter-spacing: -0.02em; font-weight: 700; line-
 .page-section.tight { padding: 72px 0; }
 
 /* Sections à thème (le body change de fond via GSAP) */
-body.theme-hero { --bg: #eef3ff; }
-body.theme-steps { --bg: #ffffff; }
-body.theme-form  { --bg: #f0f4ff; }
+body.theme-hero { --bg: #0d111c; }
+body.theme-steps { --bg: #0b0e17; }
+body.theme-form  { --bg: #0f1322; }
 body,
 body .page-section {
   transition: background-color .9s ease;
