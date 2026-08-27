@@ -87,14 +87,7 @@
                   <span style="font-size:12px;font-weight:600;color:var(--text-faint);">Confirmation</span>
                 </div>
               </div>
-              <div style="margin-top:18px;">
-                <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:8px;">
-                  <span style="color:var(--text-muted);font-weight:500;">Progression du dossier</span>
-                  <span style="color:var(--text);font-weight:700;">66%</span>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:66%;"></div></div>
-                <div style="font-size:12.5px;color:var(--text-faint);margin-top:12px;">Étape 2 sur 3 &middot; Poste &amp; Localisation</div>
-              </div>
+              <div style="font-size:12.5px;color:var(--text-faint);margin-bottom:14px;">Étape 2 sur 3 &middot; Poste &amp; Localisation</div>
             </div>
           </div>
         </div>
@@ -116,10 +109,7 @@
       <div class="card reveal" style="box-shadow:var(--shadow-lg);padding:32px 28px;">
 
         <!-- Stepper -->
-        <div class="stepper" id="stepper" style="margin-bottom:10px;"></div>
-        <div class="progress-track" style="margin-bottom:28px;">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
+        <div class="stepper" id="stepper" style="margin-bottom:28px;"></div>
 
         <!-- Alerte -->
         <div class="form-alert" id="formAlert"></div>
@@ -256,7 +246,6 @@
   if (!form) return;
   var panels = Array.prototype.slice.call(document.querySelectorAll(".step-panel"));
   var stepper = document.getElementById("stepper");
-  var progressFill = document.getElementById("progressFill");
   var stepTitles = ["Informations", "Poste & Localisation", "Confirmation"];
   var currentStep = 1;
 
@@ -287,7 +276,6 @@
     stepper.querySelectorAll("[data-line]").forEach(function (el) {
       el.classList.toggle("done", parseInt(el.getAttribute("data-line"), 10) <= currentStep);
     });
-    progressFill.style.width = (currentStep / stepTitles.length * 100) + "%";
   }
 
   function showStep(n) {

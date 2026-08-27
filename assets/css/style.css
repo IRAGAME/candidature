@@ -215,22 +215,6 @@ h1, h2, .brand { font-family: var(--font-display); }
 .step-line { width: 34px; height: 2px; background: var(--border-strong); border-radius: 2px; transition: background .3s; }
 .step-line.done { background: #0d9488; }
 
-/* --- Barre de progression --- */
-.progress-track {
-  height: 6px;
-  background: var(--border);
-  border-radius: var(--radius-pill);
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: #0d9488;
-  border-radius: var(--radius-pill);
-  transition: width .45s cubic-bezier(.4, 0, .2, 1);
-}
-
-/* --- Header / Footer --- */
 /* --- Badge --- */
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
