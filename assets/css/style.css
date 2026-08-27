@@ -100,7 +100,7 @@ h1, h2, .brand { font-family: var(--font-display); }
   color: #fff;
 }
 .btn-primary:hover:not(:disabled) {
-  background: var(--primary);
+  background: #0d9488;
 }
 
 .btn-secondary {
@@ -202,18 +202,18 @@ h1, h2, .brand { font-family: var(--font-display); }
 }
 .step.active { color: var(--primary); font-weight: 700; }
 .step.active .dot {
-  border-color: var(--primary);
+  border-color: var(--primary-accent);
   color: #fff;
-  background: var(--primary);
+  background: #0d9488;
 }
 .step.done { color: var(--accent); }
 .step.done .dot {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: #0d9488;
+  border-color: #0d9488;
   color: #fff;
 }
 .step-line { width: 34px; height: 2px; background: var(--border-strong); border-radius: 2px; transition: background .3s; }
-.step-line.done { background: var(--accent); }
+.step-line.done { background: #0d9488; }
 
 /* --- Barre de progression --- */
 .progress-track {
@@ -225,7 +225,7 @@ h1, h2, .brand { font-family: var(--font-display); }
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: var(--primary-accent);
+  background: #0d9488;
   border-radius: var(--radius-pill);
   transition: width .45s cubic-bezier(.4, 0, .2, 1);
 }
