@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Candidature - Stitch Global</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"/>
   <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
-<body style="min-height:100vh;display:flex;flex-direction:column;background:#f9f9ff;">
+<body style="min-height:100vh;display:flex;flex-direction:column;background:#f4f6fb;">
 
 <div id="sg-header-placeholder"></div>
 
 <main class="app-main sg-container-narrow" style="flex:1;">
 
-  <div style="text-align:center;margin-bottom:24px;">
-    <h1 style="font-size:28px;font-weight:700;margin:0 0 4px;">Déposez votre candidature</h1>
-    <p style="color:#434654;margin:0;font-size:14px;">Les champs marqués d'un * sont obligatoires.</p>
+  <div style="text-align:center;margin-bottom:28px;">
+    <h1 style="font-size:clamp(26px,5vw,34px);font-weight:800;margin:0 0 6px;letter-spacing:-0.02em;">Déposez votre candidature</h1>
+    <p style="color:#5b647e;margin:0;font-size:14.5px;">Les champs marqués d'un <span style="color:#d2333a;">*</span> sont obligatoires.</p>
   </div>
 
   <!-- Stepper -->
@@ -32,7 +32,8 @@
 
     <!-- ============ ÉTAPE 1 : INFORMATIONS ============ -->
     <section class="step-panel card" data-step="1" style="display:block;">
-      <h2 style="font-size:20px;font-weight:700;margin:0 0 20px;">1. Informations personnelles</h2>
+      <h2 class="step-card-title">1. Informations personnelles</h2>
+      <p class="step-card-sub">Commencez par nous en dire un peu plus sur vous.</p>
       <div class="sg-form-grid-2" style="display:grid;grid-template-columns:1fr;gap:16px;">
         <div class="field">
           <label for="prenom">Prénom *</label>
@@ -76,7 +77,8 @@
 
     <!-- ============ ÉTAPE 2 : POSTE & LOCALISATION ============ -->
     <section class="step-panel card" data-step="2" style="display:none;">
-      <h2 style="font-size:20px;font-weight:700;margin:0 0 20px;">2. Poste & Localisation</h2>
+      <h2 class="step-card-title">2. Poste &amp; Localisation</h2>
+      <p class="step-card-sub">Précisez votre contexte professionnel et votre parcours.</p>
 
       <div class="field">
         <label for="country">Pays *</label>
@@ -101,7 +103,7 @@
       </div>
 
       <div style="margin-top:16px;">
-        <label style="font-size:14px;font-weight:500;">Compétences (sélectionnez plusieurs) *</label>
+        <label style="font-size:13.5px;font-weight:600;">Compétences <span style="color:#d2333a;">*</span> (sélectionnez plusieurs)</label>
         <div id="skillsChips" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
           <span class="chip" data-value="Gestion de projet">Gestion de projet</span>
           <span class="chip" data-value="Analyse de données">Analyse de données</span>
@@ -129,17 +131,14 @@
 
     <!-- ============ ÉTAPE 3 : CONFIRMATION ============ -->
     <section class="step-panel card" data-step="3" style="display:none;">
-      <h2 style="font-size:20px;font-weight:700;margin:0 0 20px;">3. Confirmation</h2>
-      <p style="font-size:14px;color:#434654;margin:0 0 20px;">
-        Vérifiez vos informations avant de soumettre. Une fois validées, elles seront transmises
-        au service des admissions.
-      </p>
+      <h2 class="step-card-title">3. Confirmation</h2>
+      <p class="step-card-sub">Vérifiez vos informations avant de soumettre. Une fois validées, elles seront transmises au service des admissions.</p>
 
-      <div id="summary" style="font-size:14px;line-height:2;background:#f1f3ff;border:1px solid #c3c6d6;border-radius:8px;padding:16px 20px;"></div>
+      <div class="card" id="summary" style="font-size:14.5px;line-height:1.7;padding:8px 20px;box-shadow:none;"></div>
 
       <label class="field" style="display:flex;flex-direction:row;align-items:flex-start;gap:10px;margin-top:20px;">
         <input type="checkbox" id="consent" required style="height:18px;width:18px;margin-top:2px;"/>
-        <span style="font-size:13px;color:#434654;line-height:20px;">
+        <span style="font-size:13.5px;color:#5b647e;line-height:20px;">
           J'atteste que les informations fournies sont exactes et j'accepte qu'elles soient
           traitées dans le cadre de ma candidature. *
         </span>
@@ -382,9 +381,10 @@
     ];
     rows.push(["Lettre de motivation", (d.motivation || "").substring(0, 300) + (d.motivation && d.motivation.length > 300 ? "…" : "")]);
 
-    document.getElementById("summary").innerHTML = rows.map(function (r) {
-      return '<div style="margin-bottom:6px;"><strong>' + r[0] + '</strong><br/><span style="color:#041b3c;">' + r[1] + '</span></div>';
-    }).join("");
+    document.getElementById("summary").innerHTML =
+      '<div class="summary-list">' + rows.map(function (r) {
+      return '<div class="summary-row"><span class="summary-label">' + r[0] + '</span><span class="summary-value">' + r[1] + '</span></div>';
+    }).join("") + '</div>';
   }
 
   form.addEventListener("submit", function (e) {

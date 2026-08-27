@@ -1,15 +1,17 @@
 <footer class="sg-footer">
   <div class="sg-container">
-    <div style="font-weight:700;color:#003d9b;font-size:14px;margin-bottom:8px;" data-site-name>Stitch Global</div>
+    <div style="font-weight:700;color:#2456d6;font-size:15px;margin-bottom:8px;letter-spacing:-0.01em;" data-site-name>Stitch Global</div>
     <div class="foot-links">
       <a href="#">Confidentialité</a>
       <a href="#">Support</a>
       <a href="#">Mentions légales</a>
     </div>
-    <p style="font-size:12px;color:#5c5f60;margin:0;">&copy; <span id="sg-year"></span> Stitch Global. Tous droits réservés.</p>
+    <p style="font-size:13px;color:#8a92a8;margin:0;">&copy; <span id="sg-year"></span> Stitch Global. Tous droits réservés.</p>
   </div>
 </footer>
 <script>
   var yearEl = document.getElementById("sg-year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+  var nameEl = document.querySelector('[data-site-name]');
+  if (nameEl) nameEl.textContent = window.APP_CONFIG && APP_CONFIG.SITE_NAME || 'Stitch Global';
 </script>
