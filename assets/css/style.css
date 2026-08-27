@@ -50,7 +50,12 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 85% 5%, rgba(17, 181, 160, .10), transparent 30%),
+    radial-gradient(circle at 5% 20%, rgba(36, 86, 214, .12), transparent 35%),
+    url("../images/bg-texture.jpg") no-repeat center center / cover fixed,
+    var(--bg);
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
