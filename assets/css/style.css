@@ -363,14 +363,11 @@ h1, h2, h3, h4, h5 { margin: 0; letter-spacing: -0.02em; font-weight: 700; line-
 /* Sections à thème (le body change de fond via GSAP) */
 body.theme-hero { --bg: #eef3ff; }
 body.theme-steps { --bg: #ffffff; }
-body.theme-stats { --bg: #111827; color: #e5e7eb; }
 body.theme-form  { --bg: #f0f4ff; }
 body,
 body .page-section {
   transition: background-color .9s ease;
 }
-body.theme-stats,
-body.theme-stats p { color: #d1d5db; }
 
 /* Stack des étapes */
 .step-stack { display: grid; grid-template-columns: 1fr; gap: 28px; }

@@ -112,33 +112,6 @@
     </div>
   </section>
 
-  <!-- ==================== BANDEAU STATS (thème sombre) ==================== -->
-  <section class="page-section tight" id="stats" style="position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;pointer-events:none;" aria-hidden="true">
-      <img src="assets/images/bg-campus.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:.18;"/>
-    </div>
-    <div class="sg-container" style="position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:36px;text-align:center;align-items:center;">
-      <div class="reveal">
-        <div style="font-size:clamp(32px,5vw,44px);font-weight:900;letter-spacing:-0.02em;color:#fff;">Pourquoi nous faire confiance ?</div>
-        <p style="color:rgba(255,255,255,.7);max-width:560px;margin:14px auto 0;font-size:16px;">Des centaines de candidats nous confient leur dossier chaque année.</p>
-      </div>
-      <div class="step-stack" style="display:grid;grid-template-columns:1fr;">
-        <div class="stat-card reveal" style="padding:26px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);">
-          <div style="font-size:40px;font-weight:900;color:#fff;">98%</div>
-          <div style="color:rgba(255,255,255,.7);font-size:14px;margin-top:6px;">de dossiers validés au premier essai</div>
-        </div>
-        <div class="stat-card reveal" style="padding:26px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);">
-          <div style="font-size:40px;font-weight:900;color:#fff;">10 j</div>
-          <div style="color:rgba(255,255,255,.7);font-size:14px;margin-top:6px;">délai de réponse du service admissions</div>
-        </div>
-        <div class="stat-card reveal" style="padding:26px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);">
-          <div style="font-size:40px;font-weight:900;color:#fff;">24/7</div>
-          <div style="color:rgba(255,255,255,.7);font-size:14px;margin-top:6px;">soumission en ligne disponible sans interruption</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ==================== FORMULAIRE ==================== -->
   <section class="page-section" id="candidature" style="position:relative;overflow:hidden;">
     <div class="giant-num" aria-hidden="true">03</div>
@@ -579,21 +552,20 @@
     var body = document.body;
     var themes = [
       { el: "#etapes", theme: "theme-steps" },
-      { el: "#stats",  theme: "theme-stats" },
       { el: "#candidature", theme: "theme-form" }
     ];
     themes.forEach(function (t) {
       ScrollTrigger.create({
         trigger: t.el, start: "top 50%", end: "bottom 60%",
-        onEnter: function () { body.classList.remove("theme-hero", "theme-steps", "theme-stats", "theme-form"); body.classList.add(t.theme); },
-        onEnterBack: function () { body.classList.remove("theme-hero", "theme-steps", "theme-stats", "theme-form"); body.classList.add(t.theme); }
+        onEnter: function () { body.classList.remove("theme-hero", "theme-steps", "theme-form"); body.classList.add(t.theme); },
+        onEnterBack: function () { body.classList.remove("theme-hero", "theme-steps", "theme-form"); body.classList.add(t.theme); }
       });
     });
     // Retour au hero
     ScrollTrigger.create({
       trigger: "#hero", start: "top 30%", end: "top 20%",
-      onEnter: function () { body.classList.remove("theme-steps", "theme-stats", "theme-form"); body.classList.add("theme-hero"); },
-      onEnterBack: function () { body.classList.remove("theme-steps", "theme-stats", "theme-form"); body.classList.add("theme-hero"); }
+      onEnter: function () { body.classList.remove("theme-steps", "theme-form"); body.classList.add("theme-hero"); },
+      onEnterBack: function () { body.classList.remove("theme-steps", "theme-form"); body.classList.add("theme-hero"); }
     });
   }
 
@@ -601,11 +573,5 @@
   else initAnimations();
 })();
 </script>
-
-<style>
-  @media (min-width: 640px) {
-    #stats .step-stack { grid-template-columns: 1fr 1fr 1fr; }
-  }
-</style>
 </body>
 </html>
