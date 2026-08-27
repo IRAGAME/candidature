@@ -41,7 +41,7 @@
   --shadow-lg: 0 18px 44px rgba(0, 0, 0, .5);
   --shadow-primary: 0 12px 26px rgba(20, 184, 166, .3);
 
-  --font: "Pirata One", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font: "Capriola", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: var(--font);
 }
 
