@@ -39,7 +39,7 @@
               Commencer ma candidature
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a href="#etapes" class="btn btn-secondary">Découvrir</a>
+            <a href="#candidature" class="btn btn-secondary">Commencer</a>
           </div>
           <div class="reveal stats" style="display:flex;gap:42px;margin-top:52px;flex-wrap:wrap;">
             <div><div class="stats-number">15 min</div><div class="stats-label">Temps moyen de candidature</div></div>
@@ -72,44 +72,6 @@
       </div>
     </div>
     <div class="scroll-hint">Défiler</div>
-  </section>
-
-  <!-- ==================== ÉTAPES ==================== -->
-  <section class="page-section" id="etapes" style="position:relative;overflow:hidden;">
-    <div class="giant-num" aria-hidden="true">02</div>
-    <div class="sg-container" style="position:relative;z-index:1;">
-      <div style="text-align:center;max-width:640px;margin:0 auto 56px;">
-        <div class="hero-kicker reveal">Comment ça marche</div>
-        <h2 class="reveal" style="font-size:clamp(24px,4vw,32px);font-weight:400;margin-top:12px;letter-spacing:-0.01em;">Un parcours en 3 étapes</h2>
-        <p class="reveal" style="color:var(--text-muted);font-size:16px;margin-top:14px;">De vos premières informations jusqu'à la confirmation, tout est rapide et fluide.</p>
-      </div>
-      <div class="step-stack">
-        <div class="card step-item reveal" style="overflow:hidden;padding:0;position:relative;">
-          <div style="height:180px;overflow:hidden;"><img src="assets/images/step-1.jpg" alt="Vos informations" style="width:100%;height:100%;object-fit:cover;"/></div>
-          <div style="padding:28px 26px 30px;">
-            <div style="width:46px;height:46px;border-radius:13px;background:var(--primary-soft);color:var(--primary-strong);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;margin-top:-46px;border:3px solid #fff;position:relative;box-shadow:var(--shadow-sm);">1</div>
-            <h3 style="font-size:20px;font-weight:400;margin:14px 0 8px;">Vos informations</h3>
-            <p style="font-size:14.5px;color:var(--text-muted);margin:0;">Identité, coordonnées et poste visé.</p>
-          </div>
-        </div>
-        <div class="card step-item reveal" style="overflow:hidden;padding:0;position:relative;">
-          <div style="height:180px;overflow:hidden;"><img src="assets/images/step-2.jpg" alt="Votre parcours" style="width:100%;height:100%;object-fit:cover;"/></div>
-          <div style="padding:28px 26px 30px;">
-            <div style="width:46px;height:46px;border-radius:13px;background:var(--primary-soft);color:var(--primary-strong);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;margin-top:-46px;border:3px solid #fff;position:relative;box-shadow:var(--shadow-sm);">2</div>
-            <h3 style="font-size:20px;font-weight:400;margin:14px 0 8px;">Votre parcours</h3>
-            <p style="font-size:14.5px;color:var(--text-muted);margin:0;">Diplômes, expériences et compétences.</p>
-          </div>
-        </div>
-        <div class="card step-item reveal" style="overflow:hidden;padding:0;position:relative;">
-          <div style="height:180px;overflow:hidden;"><img src="assets/images/step-3.jpg" alt="Confirmation" style="width:100%;height:100%;object-fit:cover;"/></div>
-          <div style="padding:28px 26px 30px;">
-            <div style="width:46px;height:46px;border-radius:13px;background:var(--primary-soft);color:var(--primary-strong);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;margin-top:-46px;border:3px solid #fff;position:relative;box-shadow:var(--shadow-sm);">3</div>
-            <h3 style="font-size:20px;font-weight:400;margin:14px 0 8px;">Confirmation</h3>
-            <p style="font-size:14.5px;color:var(--text-muted);margin:0;">Votre dossier est enregistré et transmis.</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- ==================== FORMULAIRE ==================== -->
@@ -536,36 +498,23 @@
       });
     });
 
-    // Étapes : léger parallax sur les images
-    gsap.utils.toArray(".step-item img").forEach(function (img) {
-      gsap.fromTo(img, { yPercent: -12 }, {
-        yPercent: 12, ease: "none",
-        scrollTrigger: { trigger: img.closest(".step-item"), scrub: true }
-      });
-    });
-
-    // Décor du hero en parallaxe
-    gsap.to(".hero-decor > div", { y: function () { return -80; }, ease: "none",
-      scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true } });
-
     // Changement de thème du fond par section
     var body = document.body;
     var themes = [
-      { el: "#etapes", theme: "theme-steps" },
       { el: "#candidature", theme: "theme-form" }
     ];
     themes.forEach(function (t) {
       ScrollTrigger.create({
         trigger: t.el, start: "top 50%", end: "bottom 60%",
-        onEnter: function () { body.classList.remove("theme-hero", "theme-steps", "theme-form"); body.classList.add(t.theme); },
-        onEnterBack: function () { body.classList.remove("theme-hero", "theme-steps", "theme-form"); body.classList.add(t.theme); }
+        onEnter: function () { body.classList.remove("theme-hero", "theme-form"); body.classList.add(t.theme); },
+        onEnterBack: function () { body.classList.remove("theme-hero", "theme-form"); body.classList.add(t.theme); }
       });
     });
     // Retour au hero
     ScrollTrigger.create({
       trigger: "#hero", start: "top 30%", end: "top 20%",
-      onEnter: function () { body.classList.remove("theme-steps", "theme-form"); body.classList.add("theme-hero"); },
-      onEnterBack: function () { body.classList.remove("theme-steps", "theme-form"); body.classList.add("theme-hero"); }
+      onEnter: function () { body.classList.remove("theme-form"); body.classList.add("theme-hero"); },
+      onEnterBack: function () { body.classList.remove("theme-form"); body.classList.add("theme-hero"); }
     });
   }
 

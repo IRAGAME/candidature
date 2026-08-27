@@ -96,11 +96,11 @@ h1, h2, .brand { font-family: var(--font-display); }
 .btn:disabled { opacity: .55; cursor: not-allowed; }
 
 .btn-primary {
-  background: var(--grad-primary);
+  background: var(--primary-accent);
   color: #fff;
 }
 .btn-primary:hover:not(:disabled) {
-  filter: brightness(1.05);
+  background: var(--primary);
 }
 
 .btn-secondary {
@@ -362,15 +362,11 @@ h1, h2, .brand { font-family: var(--font-display); }
 
 /* Sections à thème (le body change de fond via GSAP) */
 body.theme-hero { --bg: #000000; }
-body.theme-steps { --bg: #000000; }
 body.theme-form  { --bg: #050507; }
 body,
 body .page-section {
   transition: background-color .9s ease;
 }
-
-/* Stack des étapes */
-.step-stack { display: grid; grid-template-columns: 1fr; gap: 28px; }
 
 /* Animations initiales (GSAP les anime) — actives seulement si GSAP est chargé */
 html.js .reveal { opacity: 0; transform: translateY(40px); will-change: opacity, transform; }
@@ -410,6 +406,5 @@ html.js .reveal-scale { opacity: 0; transform: scale(.92); will-change: opacity,
 html:not(.js) .reveal, html:not(.js) .reveal-left, html:not(.js) .reveal-right, html:not(.js) .reveal-scale { opacity: 1; transform: none; }
 
 @media (min-width: 900px) {
-  .step-stack { grid-template-columns: 1fr 1fr 1fr; }
   .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
 }
