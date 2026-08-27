@@ -231,17 +231,6 @@ h1, h2, .brand { font-family: var(--font-display); }
 }
 
 /* --- Header / Footer --- */
-.sg-footer {
-  margin-top: auto;
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-  padding: 28px 0;
-  text-align: center;
-}
-.sg-footer .foot-links { display: flex; gap: 24px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
-.sg-footer a { font-size: 13px; color: var(--text-muted); text-decoration: none; font-weight: 500; }
-.sg-footer a:hover { color: var(--primary); }
-
 /* --- Badge --- */
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
